@@ -1,0 +1,24 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std:
+class Demo {
+public:
+Demo() {
+cout << "Constructor is called: Object is created!" << endl;
+Demo() {
+cout<<< "Destructor is called: Object is destroyed!" << endl;
+};
+int main() {
+cout << "Program starts..." << endl;
+Demo obj:
+cout "Inside main function..." << endl:
+return 0:
+}
+
+OUTPUT:
+
+Program starts...
+Constructor is called: Object is created!
+Inside main function...
+Destructor is called: Object is destroyed!
