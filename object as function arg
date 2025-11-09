@@ -1,0 +1,32 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std;
+class Sample {
+int n;
+public:
+Sample(int x) {
+n = x;
+}
+void display()
+{
+cout << "Value of n = " << n << endl;
+}
+void add(Sample obj)
+{
+cout << "Sum = " << n + obj.n << endl;
+}
+};
+int main() {
+Sample s1(10), s2(20);
+s1.display();
+s2.display();
+// Passing object as argument
+s1.add(s2);
+return 0;
+}
+
+OUTPUT:
+Value of n = 10
+Value of n = 20
+Sum = 30
