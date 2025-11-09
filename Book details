@@ -1,0 +1,39 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std;
+
+class Book {
+    string title;
+    string author;
+    int pages;
+
+public:
+    void setDetails(string t, string a, int p);
+    void displayDetails();
+};
+
+void Book::setDetails(string t, string a, int p) {
+    title = t;
+    author = a;
+    pages = p;
+}
+
+void Book::displayDetails() {
+    cout << "Book Title: " << title << endl;
+    cout << "Author: " << author << endl;
+    cout << "Pages: " << pages << endl;
+}
+
+int main() {
+    Book b1;
+    b1.setDetails("The Alchemist", "Paulo Coelho", 208);
+    b1.displayDetails();
+    return 0;
+}
+
+OUTPUT:
+
+Book Title: The Alchemist
+Author: Paulo Coelho
+Pages: 208
