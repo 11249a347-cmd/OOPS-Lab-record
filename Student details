@@ -1,0 +1,42 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std;
+class student 
+{
+int rno;
+float marks;
+str name[20];
+public:
+void input()
+{
+cout<<"Enter name: ";
+cin>>name;
+cout<<"Enter Roll No: ";
+cin>>rno;
+cout<<"Enter marks: ";
+cin>>marks;
+}
+void display()
+{
+cout<<"====Student information===";
+cout<<"Name: "<<name<<endl;
+cout<<"Roll No: "<<rno<<endl;
+cout<<"Marks: "<<marks;<<endl;
+}
+};
+int main() {
+student s1;
+s1.input();
+s1.display();
+return 0;
+}
+
+OUTPUT:
+Enter Name : Amrutha
+Enter Roll No: 347
+Enter marks: 995
+====Student information===
+Name: Amrutha
+Roll No: 347
+Marks: 995
