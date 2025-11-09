@@ -1,0 +1,74 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std;
+
+class Student {
+    int rollNo;
+    string name;
+    float marks;
+
+public:
+    void getDetails() {
+        cout << "Enter Roll No: ";
+        cin >> rollNo;
+        cin.ignore();
+        cout << "Enter Name: ";
+        getline(cin, name);
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+
+    void displayDetails() {
+        cout << "Roll No: " << rollNo << endl;
+        cout << "Name: " << name << endl;
+        cout << "Marks: " << marks << endl;
+        cout << "------------------------" << endl;
+    }
+};
+
+int main() {
+    int n;
+    cout << "Enter number of students: ";
+    cin >> n;
+
+    Student s[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter details for student " << i + 1 << endl;
+        s[i].getDetails();
+    }
+
+    cout << "\nStudent Information\n";
+    cout << "------------------------\n";
+    for (int i = 0; i < n; i++) {
+        s[i].displayDetails();
+    }
+
+    return 0;
+}
+
+OUTPUT:
+
+Enter number of students: 2
+
+Enter details for student 1
+Enter Roll No: 101
+Enter Name: Arjun
+Enter Marks: 87.5
+
+Enter details for student 2
+Enter Roll No: 102
+Enter Name: Meera
+Enter Marks: 92
+
+Student Information
+------------------------
+Roll No: 101
+Name: Arjun
+Marks: 87.5
+------------------------
+Roll No: 102
+Name: Meera
+Marks: 92
+------------------------
