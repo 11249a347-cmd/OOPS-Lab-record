@@ -6,51 +6,65 @@ using namespace std;
 class Employee {
     string name;
     int id;
-    float basic, hra, da, gross;
+    float basic, da, hra, gross, tax, net;
 
 public:
-    void setDetails(string n, int i, float b, float h, float d);
-    void calculateGross();
+    void getDetails();
+    void calculate();
     void displayPayslip();
 };
 
-void Employee::setDetails(string n, int i, float b, float h, float d) {
-    name = n;
-    id = i;
-    basic = b;
-    hra = h;
-    da = d;
+void Employee::getDetails() {
+    cout << "Enter Employee Name: ";
+    getline(cin, name);
+    cout << "Enter Employee ID: ";
+    cin >> id;
+    cout << "Enter Basic Pay: ";
+    cin >> basic;
 }
 
-void Employee::calculateGross() {
-    gross = basic + hra + da;
+void Employee::calculate() {
+    da = basic * 0.70;
+    hra = basic * 0.10;
+    gross = basic + da + hra;
+    tax = gross * 0.20;
+    net = gross - tax;
 }
 
 void Employee::displayPayslip() {
-    cout << "Employee Payslip" << endl;
+    cout << "\nEmployee Payslip" << endl;
     cout << "----------------" << endl;
     cout << "Name: " << name << endl;
     cout << "ID: " << id << endl;
     cout << "Basic Pay: " << basic << endl;
-    cout << "HRA: " << hra << endl;
     cout << "DA: " << da << endl;
-    cout << "Gross Pay: " << gross << endl;
+    cout << "HRA: " << hra << endl;
+    cout << "Gross Salary: " << gross << endl;
+    cout << "Tax: " << tax << endl;
+    cout << "Net Salary: " << net << endl;
 }
 
 int main() {
-    Employee e1;
-    e1.setDetails("John Doe", 101, 25000, 8000, 5000);
-    e1.calculateGross();
-    e1.displayPayslip();
+    Employee e;
+    e.getDetails();
+    e.calculate();
+    e.displayPayslip();
     return 0;
 }
 
+
 OUTPUT:
+Enter Employee Name: Alice
+Enter Employee ID: 102
+Enter Basic Pay: 30000
+
 Employee Payslip
 ----------------
-Name: John Doe
-ID: 101
-Basic Pay: 25000
-HRA: 8000
-DA: 5000
-Gross Pay: 38000
+Name: Alice
+ID: 102
+Basic Pay: 30000
+DA: 21000
+HRA: 3000
+Gross Salary: 54000
+Tax: 10800
+Net Salary: 43200
