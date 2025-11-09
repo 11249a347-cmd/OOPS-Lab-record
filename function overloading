@@ -1,0 +1,31 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std;
+class Calculator {
+public:
+    // Function with 2 int parameters
+    int add(int a, int b) {
+        return a + b;
+    }
+    // Function with 3 int parameters (overloaded)
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+    // Function with double parameters (overloaded)
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+int main() {
+    Calculator calc;
+    cout << "Sum of 2 integers: " << calc.add(10, 20) << endl;
+    cout << "Sum of 3 integers: " << calc.add(5, 15, 25) << endl;
+    cout << "Sum of 2 doubles: " << calc.add(3.5, 2.5) << endl;
+    return 0;
+}
+
+OUTPUT:
+Sum of 2 integers: 30
+Sum of 3 integers: 45
+Sum of 2 doubles: 6
