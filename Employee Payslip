@@ -1,0 +1,56 @@
+PROGRAM:
+
+#include <iostream>
+using namespace std;
+
+class Employee {
+    string name;
+    int id;
+    float basic, hra, da, gross;
+
+public:
+    void setDetails(string n, int i, float b, float h, float d);
+    void calculateGross();
+    void displayPayslip();
+};
+
+void Employee::setDetails(string n, int i, float b, float h, float d) {
+    name = n;
+    id = i;
+    basic = b;
+    hra = h;
+    da = d;
+}
+
+void Employee::calculateGross() {
+    gross = basic + hra + da;
+}
+
+void Employee::displayPayslip() {
+    cout << "Employee Payslip" << endl;
+    cout << "----------------" << endl;
+    cout << "Name: " << name << endl;
+    cout << "ID: " << id << endl;
+    cout << "Basic Pay: " << basic << endl;
+    cout << "HRA: " << hra << endl;
+    cout << "DA: " << da << endl;
+    cout << "Gross Pay: " << gross << endl;
+}
+
+int main() {
+    Employee e1;
+    e1.setDetails("John Doe", 101, 25000, 8000, 5000);
+    e1.calculateGross();
+    e1.displayPayslip();
+    return 0;
+}
+
+OUTPUT:
+Employee Payslip
+----------------
+Name: John Doe
+ID: 101
+Basic Pay: 25000
+HRA: 8000
+DA: 5000
+Gross Pay: 38000
