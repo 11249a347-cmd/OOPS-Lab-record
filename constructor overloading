@@ -1,0 +1,34 @@
+PROGRAM:
+#include <iostream>
+using namespace std;
+class sample {
+int n;
+public:
+sample() {
+n = 0;
+  }//default constructor
+sample(int a) {
+n=a; }// parameterized constructor
+sample(const sample &x) { // copy constructor
+n =x.n;}
+void display() {
+cout << "Value of n = "<<n<< endl;
+}
+};
+int main() {
+sample s1;
+// default constructor
+s1.display();
+sample s2(10);
+// parameterized constructor
+s2.display();
+sample s3(s2);
+// copy constructor
+s3.display();
+return 0;
+  }
+
+OUTPUT:
+Value of n = 0
+Value of n = 10
+Value of n = 10
