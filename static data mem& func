@@ -1,0 +1,71 @@
+Program:
+
+#include <iostream>
+
+class MyClass {
+public:
+    // Static data member: Shared by all objects of the class
+    static int objectCount; 
+
+    // Constructor to increment objectCount when a new object is created
+    MyClass() {
+        objectCount++;
+        std::cout << "MyClass object created. Total objects: " << objectCount << std::endl;
+    }
+
+    // Destructor to decrement objectCount when an object is destroyed
+    ~MyClass() {
+        objectCount--;
+        std::cout << "MyClass object destroyed. Remaining objects: " << objectCount << std::endl;
+    }
+
+    // Static member function: Can be called without an object
+    static int getObjectCount() {
+        return objectCount;
+    }
+
+    // Non-static member function
+    void displayMessage() {
+        std::cout << "Hello from a non-static member function!" << std::endl;
+    }
+};
+
+// Initialize the static data member outside the class definition
+int MyClass::objectCount = 0;
+
+int main() {
+    // Accessing static data member directly using class name and scope resolution operator
+    std::cout << "Initial object count: " << MyClass::objectCount << std::endl;
+
+    // Create objects of MyClass
+    MyClass obj1;
+    MyClass obj2;
+
+    // Accessing static member function using class name
+    std::cout << "Object count after creating obj1 and obj2: " << MyClass::getObjectCount() << std::endl;
+
+    { // Block scope for obj3
+        MyClass obj3;
+        std::cout << "Object count inside block: " << MyClass::getObjectCount() << std::endl;
+    } // obj3 goes out of scope and its destructor is called
+
+    std::cout << "Object count after obj3 destroyed: " << MyClass::getObjectCount() << std::endl;
+
+    // Calling a non-static member function using an object
+    obj1.displayMessage();
+
+    return 0;
+}
+
+Output:
+Initial object count: 0
+MyClass object created. Total objects: 1
+MyClass object created. Total objects: 2
+Object count after creating obj1 and obj2: 2
+MyClass object created. Total objects: 3
+Object count inside block: 3
+MyClass object destroyed. Remaining objects: 2
+Object count after obj3 destroyed: 2
+Hello from a non-static member function!
+MyClass object destroyed. Remaining objects: 1
+MyClass object destroyed. Remaining objects: 0
