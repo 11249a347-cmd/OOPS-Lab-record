@@ -1,0 +1,50 @@
+Program:
+#include <iostream>
+
+class MyNumber {
+private:
+    int value;
+
+public:
+    // Constructor
+    MyNumber(int val = 0) : value(val) {}
+
+    // Overload the unary minus operator (-)
+    // This function returns a new MyNumber object with the negated value
+    MyNumber operator-() const {
+        return MyNumber(-value);
+    }
+
+    // Function to display the value
+    void display() const {
+        std::cout << "Value: " << value << std::endl;
+    }
+};
+
+int main() {
+    // Create a MyNumber object
+    MyNumber num1(10);
+    std::cout << "Original number: ";
+    num1.display();
+
+    // Apply the overloaded unary minus operator
+    MyNumber num2 = -num1; // This calls num1.operator-()
+    std::cout << "Negated number: ";
+    num2.display();
+
+    MyNumber num3(-5);
+    std::cout << "Original number: ";
+    num3.display();
+
+    MyNumber num4 = -num3;
+    std::cout << "Negated number: ";
+    num4.display();
+
+    return 0;
+}
+
+Output:
+Original Value: 10
+Negated Value: -10
+Original Value: -5
+Negated Value: 5
