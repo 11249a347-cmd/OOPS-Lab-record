@@ -1,0 +1,30 @@
+Program:
+
+#include <iostream>
+
+class MyClass {
+private:
+    int privateData;
+
+public:
+    MyClass(int val) : privateData(val) {}
+
+    // Declare a global function as a friend
+    friend void accessPrivateData(MyClass obj);
+};
+
+// Definition of the friend function
+void accessPrivateData(MyClass obj) {
+    // The friend function can access privateData directly
+    std::cout << "Private data accessed by friend function: " << obj.privateData << std::endl;
+}
+
+int main() {
+    MyClass obj(42); // Create an object of MyClass
+    accessPrivateData(obj); // Call the friend function to access private data
+
+    return 0;
+}
+
+Output:
+Private data accessed by friend function: 42
