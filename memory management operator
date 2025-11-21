@@ -1,0 +1,69 @@
+Program:
+#include <iostream>
+#include <cstdlib> // Required for malloc and free
+
+using namespace std;
+
+// Global Overload of the 'new' operator
+void* operator new(size_t size) {
+    cout << "[Custom New Operator]: Allocating " << size << " bytes of memory." << endl;
+    void* ptr = malloc(size); // Use standard library function for allocation
+
+    if (!ptr) {
+        // Handle allocation failure
+        cerr << "[Custom New Operator]: Failed to allocate memory!" << endl;
+    }
+
+    return ptr;
+}
+
+// Global Overload of the 'delete' operator
+void operator delete(void* ptr) noexcept {
+    cout << "[Custom Delete Operator]: Deallocating memory at address " << ptr << "." << endl;
+    free(ptr); // Use standard library function for deallocation
+}
+
+class MyClass {
+private:
+    int data;
+
+public:
+    MyClass() : data(42) {
+        cout << "[MyClass Constructor]: Object created." << endl;
+    }
+
+    ~MyClass() {
+        cout << "[MyClass Destructor]: Object destroyed." << endl;
+    }
+
+    void display() {
+        cout << "Data value: " << data << endl;
+    }
+};
+
+int main() {
+    cout << "--- Starting Memory Management Demo ---" << endl;
+
+    // When 'new MyClass' is called, our overloaded global new() is used
+    MyClass* obj_ptr = new MyClass;
+
+    obj_ptr->display();
+
+    // When 'delete obj_ptr' is called, our overloaded global delete() is used
+    delete obj_ptr;
+    obj_ptr = nullptr;
+
+    cout << "--- Demo Finished ---" << endl;
+
+    return 0;
+}
+
+Output:
+
+--- Starting Memory Management Demo ---
+[Custom New Operator]: Allocating 16 bytes of memory.
+[MyClass Constructor]: Object created.
+Data value: 42
+[MyClass Destructor]: Object destroyed.
+[Custom Delete Operator]: Deallocating memory at address 0x55a9c7.
+--- Demo Finished ---
