@@ -1,0 +1,64 @@
+Program:
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Box {
+private:
+    double length;
+    double width;
+    double height;
+
+public:
+    // 1. Using 'this' to avoid ambiguity between parameters and member variables
+    void setDimensions(double length, double width, double height) {
+        // 'this->length' refers to the member variable of the object
+        // 'length' refers to the local function parameter
+        this->length = length;
+        this->width = width;
+        this->height = height;
+    }
+
+    // 2. Returning *this by reference to allow for method chaining
+    Box& scaleByTwo() {
+        this->length *= 2;
+        this->width *= 2;
+        this->height *= 2;
+        return *this; // Return the current object by reference
+    }
+
+    void displayVolume() {
+        double volume = length * width * height;
+        cout << "Box Dimensions (L x W x H): " << length << "x" << width << "x" << height << endl;
+        cout << "Volume: " << volume << endl;
+    }
+};
+
+int main() {
+    Box b1;
+
+    // Use setDimensions to initialize the object
+    b1.setDimensions(10.0, 5.0, 2.0);
+
+    cout << "--- Initial Box Details ---" << endl;
+    b1.displayVolume();
+
+    // Use method chaining (enabled by 'return *this;')
+    // scaleByTwo modifies the object in place, then returns a reference to itself
+    cout << "\n--- Box Details After Chaining scaleByTwo() twice ---" << endl;
+    b1.scaleByTwo().scaleByTwo(); 
+
+    b1.displayVolume();
+
+    return 0;
+}
+
+Output:
+--- Initial Box Details ---
+Box Dimensions (L x W x H): 10x5x2
+Volume: 100
+
+--- Box Details After Chaining scaleByTwo() twice ---
+Box Dimensions (L x W x H): 40x20x8
+Volume: 6400
