@@ -1,0 +1,55 @@
+Program:
+
+#include <iostream>
+using namespace std;
+
+class student {
+    int rno;
+    char name[20];
+
+public:
+    void getstudent() {
+        cout << "Enter the name of student: ";
+        cin >> name;
+        cout << "Enter Reg. No: ";
+        cin >> rno;
+    }
+
+    void displaystudent() {
+        cout << "Name of the student = " << name << endl;
+        cout << "Reg. No = " << rno << endl;
+    }
+};
+
+class address : public student {
+    char city[20];
+
+public:
+    void getaddress() {
+        getstudent();
+        cout << "Enter the city name: ";
+        cin >> city;
+    }
+
+    void displayaddress() {
+        displaystudent();
+        cout << "City = " << city << endl;
+    }
+};
+
+int main() {
+    address a1;
+
+    a1.getaddress();
+    a1.displayaddress();
+
+    return 0;
+}
+
+Output:
+Enter the name of student: Alice
+Enter Reg. No: 12345
+Enter the city name: New York
+Name of the student = Alice
+Reg. No = 12345
+City = New
