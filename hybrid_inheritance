@@ -1,0 +1,94 @@
+Program:
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base Class (Declared as virtual base for derived classes)
+class Student {
+protected:
+    int roll_no;
+    string name;
+
+public:
+    void get_details(int r, string n) {
+        roll_no = r;
+        name = n;
+    }
+
+    void display_details() {
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << roll_no << endl;
+    }
+};
+
+// Intermediate Base Class 1 (Virtual Inheritance)
+class Test : virtual public Student {
+protected:
+    float marks_math, marks_sci;
+
+public:
+    void get_marks(float m, float s) {
+        marks_math = m;
+        marks_sci = s;
+    }
+
+    void display_marks() {
+        cout << "Math Marks: " << marks_math << endl;
+        cout << "Science Marks: " << marks_sci << endl;
+    }
+};
+
+// Intermediate Base Class 2 (Virtual Inheritance)
+class Sports : virtual public Student {
+protected:
+    float score;
+
+public:
+    void get_score(float sc) {
+        score = sc;
+    }
+
+    void display_score() {
+        cout << "Sports Score (out of 10): " << score << endl;
+    }
+};
+
+// Derived Class (Multiple Inheritance from virtual bases)
+class Result : public Test, public Sports {
+private:
+    float total;
+
+public:
+    void display_result() {
+        // Accessing Student methods is unambiguous due to 'virtual'
+        display_details(); 
+        display_marks();
+        display_score();
+        total = marks_math + marks_sci + score;
+        cout << "Total Performance: " << total << endl;
+    }
+};
+
+int main() {
+    Result student1;
+
+    // Set details from all base paths:
+    student1.get_details(101, "David"); // From Student class
+    student1.get_marks(85.5, 92.0);    // From Test class
+    student1.get_score(7.5);           // From Sports class
+
+    cout << "--- Student Report Card ---" << endl;
+    student1.display_result();
+
+    return 0;
+}
+
+Output:
+--- Student Report Card ---
+Name: David
+Roll No: 101
+Math Marks: 85.5
+Science Marks: 92
+Sports Score (out of 10): 7.5
+Total Performance: 185
