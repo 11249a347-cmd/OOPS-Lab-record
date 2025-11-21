@@ -1,0 +1,33 @@
+Program:
+
+#include <iostream>
+#include <iomanip> // for manipulators
+using namespace std;
+int main() {
+    int a = 10, b = 200, c = 5;
+    cout << "Default output:" << endl;
+    cout << a << " " << b << " " << c << endl;
+    cout << "\nUsing setw(5) to set width:" << endl;
+    cout << setw(5) << a << setw(5) << b << setw(5) << c << endl;
+    cout << "\nUsing setfill('*') with setw(5):" << endl;
+    cout << setfill('*'); // fill empty spaces with ***
+    cout << setw(5) << a << setw(5) << b << setw(5) << c << endl;
+    cout << "\nUsing setfill('#') with setw(5):" << endl;
+    cout << setfill('#');
+    cout << setw(5) << a << setw(5) << b << setw(5) << c << endl;
+    return 0;
+}
+
+
+Output:
+Default output:
+10 200 5
+
+Using setw(5) to set width:
+   10  200    5
+
+Using setfill('*') with setw(5):
+***10**200****5
+
+Using setfill('#') with setw(5):
+###10##200####5
